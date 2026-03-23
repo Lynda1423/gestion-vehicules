@@ -39,6 +39,7 @@ jobs:
 
   # ─────────────────────────────────────────────────
   # JOB 2 — Tests unitaires Node.js
+  # CORRECTION : suppression du cache npm (pas de package-lock.json)
   # ─────────────────────────────────────────────────
   test-node:
     name: Tests Node.js
@@ -55,8 +56,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: npm
-          cache-dependency-path: ./${{ matrix.service }}/package-lock.json
+          # CORRECTION : pas de cache car pas de package-lock.json
 
       - name: Installer les dépendances
         working-directory: ./${{ matrix.service }}
@@ -68,7 +68,6 @@ jobs:
 
   # ─────────────────────────────────────────────────
   # JOB 3 — Build et push des images Docker
-  # Se déclenche uniquement sur la branche main
   # ─────────────────────────────────────────────────
   build-and-push:
     name: Build & Push Docker
@@ -134,8 +133,8 @@ jobs:
     steps:
       - name: Succès
         if: needs.build-and-push.result == 'success'
-        run: echo "✅ Pipeline réussi — toutes les images sont publiées sur ghcr.io"
+        run: echo "Pipeline réussi — toutes les images sont publiées sur ghcr.io"
 
       - name: Échec
         if: needs.build-and-push.result == 'failure'
-        run: echo "❌ Pipeline échoué — vérifiez les logs ci-dessus" && exit 1
+        run: echo "Pipeline échoué — vérifiez les logs ci-dessus" && exit 1
