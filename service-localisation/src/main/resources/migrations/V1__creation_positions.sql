@@ -19,22 +19,22 @@ CREATE TABLE vehicules_cache (
 CREATE TABLE zones (
     id               UUID         NOT NULL DEFAULT gen_random_uuid(),
     nom              VARCHAR(100) NOT NULL,
-    type_zone        VARCHAR(20)  NOT NULL DEFAULT 'AUTORISEE',
+    type        VARCHAR(20)  NOT NULL DEFAULT 'AUTORISEE',
     latitude_centre  DOUBLE PRECISION NOT NULL,
     longitude_centre DOUBLE PRECISION NOT NULL,
     rayon_metres     INTEGER      NOT NULL,
-    actif            BOOLEAN      NOT NULL DEFAULT TRUE,
+    active        BOOLEAN      NOT NULL DEFAULT TRUE,
     date_creation    TIMESTAMP    NOT NULL DEFAULT NOW(),
 
     CONSTRAINT pk_zones       PRIMARY KEY (id),
-    CONSTRAINT chk_zones_type CHECK (type_zone IN ('AUTORISEE', 'INTERDITE')),
+    CONSTRAINT chk_zones_type CHECK (type IN ('AUTORISEE', 'INTERDITE')),
     CONSTRAINT chk_zones_lat  CHECK (latitude_centre  BETWEEN -90  AND 90),
     CONSTRAINT chk_zones_lng  CHECK (longitude_centre BETWEEN -180 AND 180),
     CONSTRAINT chk_zones_rayon CHECK (rayon_metres > 0)
 );
 
-CREATE INDEX idx_zones_type  ON zones(type_zone);
-CREATE INDEX idx_zones_actif ON zones(actif);
+CREATE INDEX idx_zones_type  ON zones(type);
+CREATE INDEX idx_zones_actif ON zones(active);
 
 -- Positions GPS (hypertable TimescaleDB — sans PK pour performance maximale)
 -- CORRECTION : FK vehicule_id supprimée — service-vehicules est dans une autre BDD

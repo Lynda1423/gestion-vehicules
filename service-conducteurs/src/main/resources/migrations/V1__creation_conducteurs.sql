@@ -1,4 +1,13 @@
-CREATE TABLE conducteurs (
+-- Fonction partagée : met à jour date_modification automatiquement
+CREATE OR REPLACE FUNCTION set_date_modification()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.date_modification = NOW();
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TABLE IF NOT EXISTS conducteurs (
     id                     UUID         NOT NULL DEFAULT gen_random_uuid(),
     -- CORRECTION : keycloak_id ajouté — lien avec le compte Keycloak du conducteur
     keycloak_id            VARCHAR(36)  NOT NULL,
@@ -37,6 +46,7 @@ CREATE INDEX idx_conducteurs_statut   ON conducteurs(statut_compte);
 CREATE INDEX idx_conducteurs_dispo    ON conducteurs(disponibilite);
 CREATE INDEX idx_conducteurs_email    ON conducteurs(email);
 CREATE INDEX idx_conducteurs_keycloak ON conducteurs(keycloak_id);
+
 
 -- Trigger : met à jour date_modification automatiquement
 CREATE TRIGGER trg_conducteurs_date_modification

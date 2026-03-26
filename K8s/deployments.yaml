@@ -45,18 +45,30 @@ spec:
             limits:
               memory: "512Mi"
               cpu: "500m"
+          # startupProbe : laisse Spring Boot démarrer tranquillement (max 200x10s = 2000s)
+          startupProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8081
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            failureThreshold: 200
+          # livenessProbe : redémarre si le service plante après démarrage
           livenessProbe:
             httpGet:
               path: /actuator/health
               port: 8081
-            initialDelaySeconds: 120
-            periodSeconds: 10
+            periodSeconds: 30
+            failureThreshold: 10
+            timeoutSeconds: 10
+          # readinessProbe : retire du load balancer si pas prêt
           readinessProbe:
             httpGet:
               path: /actuator/health
               port: 8081
-            initialDelaySeconds: 90
-            periodSeconds: 5
+            periodSeconds: 10
+            failureThreshold: 20
+            timeoutSeconds: 10
 
 ---
 # ─────────────────────────────────────────────────
@@ -106,18 +118,27 @@ spec:
             limits:
               memory: "512Mi"
               cpu: "500m"
+          startupProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8082
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            failureThreshold: 200
           livenessProbe:
             httpGet:
               path: /actuator/health
               port: 8082
-            initialDelaySeconds: 120
-            periodSeconds: 10
+            periodSeconds: 30
+            failureThreshold: 10
+            timeoutSeconds: 10
           readinessProbe:
             httpGet:
               path: /actuator/health
               port: 8082
-            initialDelaySeconds: 90
-            periodSeconds: 5
+            periodSeconds: 10
+            failureThreshold: 20
+            timeoutSeconds: 10
 
 ---
 # ─────────────────────────────────────────────────
@@ -167,18 +188,27 @@ spec:
             limits:
               memory: "512Mi"
               cpu: "500m"
+          startupProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8083
+            initialDelaySeconds: 30
+            periodSeconds: 10
+            failureThreshold: 200
           livenessProbe:
             httpGet:
               path: /actuator/health
               port: 8083
-            initialDelaySeconds: 120
-            periodSeconds: 10
+            periodSeconds: 30
+            failureThreshold: 10
+            timeoutSeconds: 10
           readinessProbe:
             httpGet:
               path: /actuator/health
               port: 8083
-            initialDelaySeconds: 90
-            periodSeconds: 5
+            periodSeconds: 10
+            failureThreshold: 20
+            timeoutSeconds: 10
 
 ---
 # ─────────────────────────────────────────────────
@@ -218,18 +248,27 @@ spec:
             limits:
               memory: "256Mi"
               cpu: "250m"
+          startupProbe:
+            httpGet:
+              path: /health
+              port: 8084
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            failureThreshold: 30
           livenessProbe:
             httpGet:
               path: /health
               port: 8084
-            initialDelaySeconds: 90
-            periodSeconds: 10
+            periodSeconds: 20
+            failureThreshold: 5
+            timeoutSeconds: 5
           readinessProbe:
             httpGet:
               path: /health
               port: 8084
-            initialDelaySeconds: 15
-            periodSeconds: 5
+            periodSeconds: 10
+            failureThreshold: 10
+            timeoutSeconds: 5
 
 ---
 # ─────────────────────────────────────────────────
@@ -268,15 +307,24 @@ spec:
             limits:
               memory: "256Mi"
               cpu: "250m"
+          startupProbe:
+            httpGet:
+              path: /health
+              port: 3002
+            initialDelaySeconds: 10
+            periodSeconds: 5
+            failureThreshold: 30
           livenessProbe:
             httpGet:
               path: /health
               port: 3002
-            initialDelaySeconds: 90
-            periodSeconds: 10
+            periodSeconds: 20
+            failureThreshold: 5
+            timeoutSeconds: 5
           readinessProbe:
             httpGet:
               path: /health
               port: 3002
-            initialDelaySeconds: 15
-            periodSeconds: 5
+            periodSeconds: 10
+            failureThreshold: 10
+            timeoutSeconds: 5

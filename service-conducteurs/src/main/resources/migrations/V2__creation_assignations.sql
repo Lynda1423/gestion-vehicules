@@ -1,4 +1,4 @@
-CREATE TABLE assignations (
+CREATE TABLE IF NOT EXISTS assignations (
     id UUID NOT NULL DEFAULT gen_random_uuid(),
     conducteur_id UUID NOT NULL,
     vehicule_id UUID NOT NULL,
@@ -11,11 +11,6 @@ CREATE TABLE assignations (
     CONSTRAINT fk_assignations_conducteur
     FOREIGN KEY (conducteur_id)
     REFERENCES conducteurs(id)
-    ON DELETE CASCADE,
-
-    CONSTRAINT fk_assignations_vehicule
-    FOREIGN KEY (vehicule_id)
-    REFERENCES vehicules(id)
     ON DELETE CASCADE,
 
     CONSTRAINT chk_assignations_dates

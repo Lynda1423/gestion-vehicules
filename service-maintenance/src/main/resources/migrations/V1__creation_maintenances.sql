@@ -1,6 +1,15 @@
+-- Fonction partagée : met à jour date_modification automatiquement
+CREATE OR REPLACE FUNCTION set_date_modification()
+RETURNS TRIGGER AS $$
+BEGIN
+    NEW.date_modification = NOW();
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
 -- Cache local des véhicules reçus via Kafka (topic vehicules)
 -- CORRECTION : pas de FK vers une autre BDD — cohérence assurée par Kafka
-CREATE TABLE vehicules_cache (
+CREATE TABLE IF NOT EXISTS vehicules_cache (
     vehicule_id   UUID        NOT NULL,
     plaque        VARCHAR(20) NOT NULL,
     statut        VARCHAR(20) NOT NULL,
@@ -77,8 +86,9 @@ CREATE INDEX idx_maintenances_technicien     ON maintenances(technicien_id);
 CREATE INDEX idx_maintenances_statut         ON maintenances(statut);
 CREATE INDEX idx_maintenances_date_planifiee ON maintenances(date_planifiee);
 
+
 -- Trigger : met à jour date_modification automatiquement
 CREATE TRIGGER trg_maintenances_date_modification
     BEFORE UPDATE ON maintenances
     FOR EACH ROW
-    EXECUTE FUNCTION set_date_modification();
+    EXECUTE FUNCTION set_date_modification();

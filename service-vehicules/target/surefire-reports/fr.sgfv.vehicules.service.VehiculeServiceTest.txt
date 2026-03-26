@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: fr.sgfv.vehicules.service.VehiculeServiceTest
+-------------------------------------------------------------------------------
+Tests run: 13, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.779 s -- in fr.sgfv.vehicules.service.VehiculeServiceTest
