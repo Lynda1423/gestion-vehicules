@@ -124,6 +124,20 @@
     <artifactId>mockito-junit-jupiter</artifactId>
     <scope>test</scope>
 </dependency>
+<<<<<<< HEAD
+=======
+    <dependency>
+        <groupId>net.logstash.logback</groupId>
+        <artifactId>logstash-logback-encoder</artifactId>
+        <version>7.4</version>
+    </dependency>
+    <!-- H2 Database for Integration Tests -->
+    <dependency>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <scope>test</scope>
+    </dependency>
+>>>>>>> bc6798a (modification de service vehicules)
   </dependencies>
 
   <build>
@@ -140,6 +154,36 @@
           </excludes>
         </configuration>
       </plugin>
+<<<<<<< HEAD
+=======
+      <!-- JaCoCo for Code Coverage -->
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.11</version>
+        <configuration>
+          <excludes>
+            <exclude>fr/sgfv/vehicules/dto/**</exclude>
+            <exclude>fr/sgfv/vehicules/entity/**</exclude>
+            <exclude>fr/sgfv/vehicules/VehiculesApplication.class</exclude>
+          </excludes>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>report</id>
+            <phase>test</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+>>>>>>> bc6798a (modification de service vehicules)
     </plugins>
   </build>
 
