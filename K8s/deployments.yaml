@@ -50,9 +50,9 @@ spec:
             httpGet:
               path: /actuator/health
               port: 8081
-            initialDelaySeconds: 30
+            initialDelaySeconds: 60
             periodSeconds: 10
-            failureThreshold: 200
+            failureThreshold: 30
           # livenessProbe : redémarre si le service plante après démarrage
           livenessProbe:
             httpGet:
@@ -94,7 +94,7 @@ spec:
       containers:
         - name: service-conducteurs
           image: gestion_vehicules-service-conducteurs:latest
-          imagePullPolicy: Never
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8082
           envFrom:
@@ -122,9 +122,9 @@ spec:
             httpGet:
               path: /actuator/health
               port: 8082
-            initialDelaySeconds: 30
+            initialDelaySeconds: 60
             periodSeconds: 10
-            failureThreshold: 200
+            failureThreshold: 30
           livenessProbe:
             httpGet:
               path: /actuator/health
@@ -192,9 +192,9 @@ spec:
             httpGet:
               path: /actuator/health
               port: 8083
-            initialDelaySeconds: 30
+            initialDelaySeconds: 60
             periodSeconds: 10
-            failureThreshold: 200
+            failureThreshold: 30
           livenessProbe:
             httpGet:
               path: /actuator/health
