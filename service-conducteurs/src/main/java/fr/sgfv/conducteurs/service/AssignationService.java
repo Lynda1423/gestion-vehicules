@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -34,7 +35,11 @@ public class AssignationService {
         if (conducteur.getDateExpirationPermis().isBefore(LocalDate.now())) {
             throw new RuntimeException("Impossible d'assigner : Permis expiré");
         }
+<<<<<<< HEAD
         if (conducteur.getStatut() != fr.sgfv.conducteurs.entity.ConducteurStatut.ACTIF) {
+=======
+        if (conducteur.getStatutCompte() != fr.sgfv.conducteurs.entity.ConducteurStatut.ACTIF) {
+>>>>>>> lynda
             throw new RuntimeException("Impossible d'assigner : Conducteur inactif ou suspendu");
         }
 
@@ -72,8 +77,16 @@ public class AssignationService {
                         .id(assignation.getConducteur().getId())
                         .nom(assignation.getConducteur().getNom())
                         .prenom(assignation.getConducteur().getPrenom())
+<<<<<<< HEAD
                         .numeroPermis(assignation.getConducteur().getNumeroPermis())
                         .statut(assignation.getConducteur().getStatut())
+=======
+                        .email(assignation.getConducteur().getEmail())
+                        .telephone(assignation.getConducteur().getTelephone())
+                        .numeroPermis(assignation.getConducteur().getNumeroPermis())
+                        .statutCompte(assignation.getConducteur().getStatutCompte())
+                        .disponibilite(assignation.getConducteur().getDisponibilite())
+>>>>>>> lynda
                         .build())
                 .vehiculeId(assignation.getVehiculeId())
                 .dateDebut(assignation.getDateDebut())

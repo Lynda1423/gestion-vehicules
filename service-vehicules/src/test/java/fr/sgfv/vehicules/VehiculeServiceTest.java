@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-package fr.sgfv.vehicules.service;
-
-=======
 package fr.sgfv.vehicules;
 import fr.sgfv.vehicules.service.VehiculeService;
->>>>>>> bc6798a (modification de service vehicules)
 import fr.sgfv.vehicules.dto.*;
 import fr.sgfv.vehicules.entity.Vehicule;
 import fr.sgfv.vehicules.exception.*;
@@ -44,16 +39,6 @@ class VehiculeServiceTest {
     void setUp() {
         vehiculeId = UUID.randomUUID();
         vehicule = Vehicule.builder()
-<<<<<<< HEAD
-            .id(vehiculeId)
-            .plaque("AB-123-CD")
-            .marque("Renault")
-            .modele("Clio")
-            .annee(2021)
-            .kilometrage(15000)
-            .statut("DISPONIBLE")
-            .build();
-=======
                 .id(vehiculeId)
                 .plaque("AB-123-CD")
                 .marque("Renault")
@@ -62,7 +47,6 @@ class VehiculeServiceTest {
                 .kilometrage(15000)
                 .statut("DISPONIBLE")
                 .build();
->>>>>>> bc6798a (modification de service vehicules)
     }
 
     // ── Tests creerVehicule ───────────────────────
@@ -97,11 +81,7 @@ class VehiculeServiceTest {
         when(vehiculeRepository.existsByPlaque("AB-123-CD")).thenReturn(true);
 
         assertThatThrownBy(() -> vehiculeService.creerVehicule(dto))
-<<<<<<< HEAD
-            .isInstanceOf(PlaqueDejaExistanteException.class);
-=======
                 .isInstanceOf(PlaqueDejaExistanteException.class);
->>>>>>> bc6798a (modification de service vehicules)
 
         verify(vehiculeRepository, never()).save(any());
     }
@@ -111,11 +91,7 @@ class VehiculeServiceTest {
     @Test
     void getVehicule_succes() {
         when(vehiculeRepository.findById(vehiculeId))
-<<<<<<< HEAD
-            .thenReturn(Optional.of(vehicule));
-=======
                 .thenReturn(Optional.of(vehicule));
->>>>>>> bc6798a (modification de service vehicules)
 
         VehiculeDTO result = vehiculeService.getVehicule(vehiculeId);
 
@@ -126,17 +102,10 @@ class VehiculeServiceTest {
     @Test
     void getVehicule_introuvable_lanceException() {
         when(vehiculeRepository.findById(vehiculeId))
-<<<<<<< HEAD
-            .thenReturn(Optional.empty());
-
-        assertThatThrownBy(() -> vehiculeService.getVehicule(vehiculeId))
-            .isInstanceOf(VehiculeNotFoundException.class);
-=======
                 .thenReturn(Optional.empty());
 
         assertThatThrownBy(() -> vehiculeService.getVehicule(vehiculeId))
                 .isInstanceOf(VehiculeNotFoundException.class);
->>>>>>> bc6798a (modification de service vehicules)
     }
 
     // ── Tests modifierVehicule ────────────────────
@@ -145,41 +114,25 @@ class VehiculeServiceTest {
     void modifierVehicule_horsService_lanceException() {
         vehicule.setStatut("HORS_SERVICE");
         when(vehiculeRepository.findById(vehiculeId))
-<<<<<<< HEAD
-            .thenReturn(Optional.of(vehicule));
-=======
                 .thenReturn(Optional.of(vehicule));
->>>>>>> bc6798a (modification de service vehicules)
 
         UpdateVehiculeDTO dto = new UpdateVehiculeDTO();
         dto.setMarque("Peugeot");
 
         assertThatThrownBy(() -> vehiculeService.modifierVehicule(vehiculeId, dto))
-<<<<<<< HEAD
-            .isInstanceOf(VehiculeHorsServiceException.class);
-=======
                 .isInstanceOf(VehiculeHorsServiceException.class);
->>>>>>> bc6798a (modification de service vehicules)
     }
 
     @Test
     void modifierVehicule_kilometrageDecroissant_lanceException() {
         when(vehiculeRepository.findById(vehiculeId))
-<<<<<<< HEAD
-            .thenReturn(Optional.of(vehicule));
-=======
                 .thenReturn(Optional.of(vehicule));
->>>>>>> bc6798a (modification de service vehicules)
 
         UpdateVehiculeDTO dto = new UpdateVehiculeDTO();
         dto.setKilometrage(1000); // inférieur à 15000
 
         assertThatThrownBy(() -> vehiculeService.modifierVehicule(vehiculeId, dto))
-<<<<<<< HEAD
-            .isInstanceOf(KilometrageInvalideException.class);
-=======
                 .isInstanceOf(KilometrageInvalideException.class);
->>>>>>> bc6798a (modification de service vehicules)
     }
 
     // ── Tests changerStatut ───────────────────────
@@ -187,11 +140,7 @@ class VehiculeServiceTest {
     @Test
     void changerStatut_transitionValide_succes() {
         when(vehiculeRepository.findById(vehiculeId))
-<<<<<<< HEAD
-            .thenReturn(Optional.of(vehicule));
-=======
                 .thenReturn(Optional.of(vehicule));
->>>>>>> bc6798a (modification de service vehicules)
         when(vehiculeRepository.save(any())).thenReturn(vehicule);
 
         ChangerStatutDTO dto = new ChangerStatutDTO();
@@ -207,21 +156,13 @@ class VehiculeServiceTest {
     void changerStatut_transitionInvalide_lanceException() {
         vehicule.setStatut("HORS_SERVICE");
         when(vehiculeRepository.findById(vehiculeId))
-<<<<<<< HEAD
-            .thenReturn(Optional.of(vehicule));
-=======
                 .thenReturn(Optional.of(vehicule));
->>>>>>> bc6798a (modification de service vehicules)
 
         ChangerStatutDTO dto = new ChangerStatutDTO();
         dto.setStatut("EN_MISSION");
 
         assertThatThrownBy(() -> vehiculeService.changerStatut(vehiculeId, dto))
-<<<<<<< HEAD
-            .isInstanceOf(TransitionStatutInvalideException.class);
-=======
                 .isInstanceOf(TransitionStatutInvalideException.class);
->>>>>>> bc6798a (modification de service vehicules)
     }
 
     // ── Tests assignerConducteur ──────────────────
@@ -230,11 +171,7 @@ class VehiculeServiceTest {
     void assignerConducteur_vehiculeDisponible_succes() {
         UUID conducteurId = UUID.randomUUID();
         when(vehiculeRepository.findById(vehiculeId))
-<<<<<<< HEAD
-            .thenReturn(Optional.of(vehicule));
-=======
                 .thenReturn(Optional.of(vehicule));
->>>>>>> bc6798a (modification de service vehicules)
         when(vehiculeRepository.save(any())).thenReturn(vehicule);
 
         AssignerVehiculeDTO dto = new AssignerVehiculeDTO();
@@ -250,21 +187,13 @@ class VehiculeServiceTest {
     void assignerConducteur_vehiculeNonDisponible_lanceException() {
         vehicule.setStatut("EN_MISSION");
         when(vehiculeRepository.findById(vehiculeId))
-<<<<<<< HEAD
-            .thenReturn(Optional.of(vehicule));
-=======
                 .thenReturn(Optional.of(vehicule));
->>>>>>> bc6798a (modification de service vehicules)
 
         AssignerVehiculeDTO dto = new AssignerVehiculeDTO();
         dto.setConducteurId(UUID.randomUUID());
 
         assertThatThrownBy(() -> vehiculeService.assignerConducteur(vehiculeId, dto))
-<<<<<<< HEAD
-            .isInstanceOf(IllegalStateException.class);
-=======
                 .isInstanceOf(IllegalStateException.class);
->>>>>>> bc6798a (modification de service vehicules)
     }
 
     // ── Tests archiverVehicule ────────────────────
@@ -272,11 +201,7 @@ class VehiculeServiceTest {
     @Test
     void archiverVehicule_succes() {
         when(vehiculeRepository.findById(vehiculeId))
-<<<<<<< HEAD
-            .thenReturn(Optional.of(vehicule));
-=======
                 .thenReturn(Optional.of(vehicule));
->>>>>>> bc6798a (modification de service vehicules)
         when(vehiculeRepository.save(any())).thenReturn(vehicule);
 
         VehiculeDTO result = vehiculeService.archiverVehicule(vehiculeId);
@@ -299,11 +224,7 @@ class VehiculeServiceTest {
     @Test
     void listerVehicules_avecStatut_filtrePaStatut() {
         when(vehiculeRepository.findByStatut("DISPONIBLE"))
-<<<<<<< HEAD
-            .thenReturn(List.of(vehicule));
-=======
                 .thenReturn(List.of(vehicule));
->>>>>>> bc6798a (modification de service vehicules)
 
         List<VehiculeDTO> result = vehiculeService.listerVehicules("DISPONIBLE", null);
 

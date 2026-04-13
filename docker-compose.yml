@@ -165,15 +165,7 @@ services:
       - zookeeper-logs:/var/lib/zookeeper/log
     networks:
       - fleet-network
-<<<<<<< HEAD
-    healthcheck:
-      test: ["CMD-SHELL", "echo ruok | nc localhost 2181"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-=======
     # Healthcheck supprimé pour éviter les faux négatifs sur Windows
->>>>>>> bc6798a (modification de service vehicules)
 
   kafka:
     image: confluentinc/cp-kafka:7.5.0
@@ -181,20 +173,13 @@ services:
     restart: unless-stopped
     depends_on:
       zookeeper:
-<<<<<<< HEAD
-        condition: service_healthy
-=======
         condition: service_started
->>>>>>> bc6798a (modification de service vehicules)
     ports:
       - "9092:9092"
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-<<<<<<< HEAD
-=======
       KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:29092,PLAINTEXT_HOST://0.0.0.0:9092
->>>>>>> bc6798a (modification de service vehicules)
       # PLAINTEXT      = accès depuis les conteneurs (kafka:29092)
       # PLAINTEXT_HOST = accès depuis ta machine (localhost:9092)
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
@@ -208,15 +193,7 @@ services:
       - kafka-data:/var/lib/kafka/data
     networks:
       - fleet-network
-<<<<<<< HEAD
-    healthcheck:
-      test: ["CMD-SHELL", "kafka-topics --bootstrap-server localhost:9092 --list"]
-      interval: 15s
-      timeout: 10s
-      retries: 5
-=======
     # Healthcheck simplifié
->>>>>>> bc6798a (modification de service vehicules)
 
   kafka-ui:
     image: provectuslabs/kafka-ui:latest
@@ -224,11 +201,7 @@ services:
     restart: unless-stopped
     depends_on:
       kafka:
-<<<<<<< HEAD
-        condition: service_healthy
-=======
         condition: service_started
->>>>>>> bc6798a (modification de service vehicules)
     ports:
       - "8090:8080"
     environment:
@@ -249,29 +222,19 @@ services:
     environment:
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin123
-<<<<<<< HEAD
-      KC_HTTP_PORT: 8080
-    ports:
-      - "8180:8080"   # CORRECTION : 8080:8080 → 8180:8080 (évite conflit avec les services)
-=======
       KC_HTTP_PORT: 8180
       KC_HOSTNAME_STRICT: "false"
       KC_HOSTNAME_STRICT_HTTPS: "false"
       KC_HTTP_ENABLED: "true"
     ports:
       - "8180:8180"
->>>>>>> bc6798a (modification de service vehicules)
     volumes:
       # CORRECTION : keycloak-realm.json → realm-export.json
       - ./realm-export.json:/opt/keycloak/data/import/realm-export.json
     networks:
       - fleet-network
     healthcheck:
-<<<<<<< HEAD
-      test: ["CMD-SHELL", "curl -f http://localhost:8080/health/ready || exit 1"]
-=======
       test: ["CMD-SHELL", "curl -f http://localhost:8180/health/ready || exit 1"]
->>>>>>> bc6798a (modification de service vehicules)
       interval: 20s
       timeout: 10s
       retries: 10
@@ -375,31 +338,19 @@ services:
       SPRING_DATASOURCE_USERNAME: sgfv
       SPRING_DATASOURCE_PASSWORD: sgfv_secret
       SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:29092
-<<<<<<< HEAD
-      KEYCLOAK_AUTH_SERVER_URL: http://keycloak:8080
-=======
       # On force Keycloak 8180 via JWK seulement pour bypasser le mismatch 401
       SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI: http://keycloak:8180/realms/sgfv/protocol/openid-connect/certs
->>>>>>> bc6798a (modification de service vehicules)
       KEYCLOAK_REALM: sgfv
       KEYCLOAK_RESOURCE: sgfv-backend
       OTEL_EXPORTER_OTLP_ENDPOINT: http://otel-collector:4317
       OTEL_SERVICE_NAME: service-vehicules
     depends_on:
       postgres-vehicules:
-<<<<<<< HEAD
-        condition: service_healthy
-      kafka:
-        condition: service_healthy
-      keycloak:
-        condition: service_healthy
-=======
         condition: service_started
       kafka:
         condition: service_started
       keycloak:
         condition: service_started
->>>>>>> bc6798a (modification de service vehicules)
     networks:
       - fleet-network
 
@@ -417,31 +368,19 @@ services:
       SPRING_DATASOURCE_USERNAME: sgfv
       SPRING_DATASOURCE_PASSWORD: sgfv_secret
       SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:29092
-<<<<<<< HEAD
-      KEYCLOAK_AUTH_SERVER_URL: http://keycloak:8080
-=======
       # On force Keycloak 8180
       SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI: http://keycloak:8180/realms/sgfv/protocol/openid-connect/certs
->>>>>>> bc6798a (modification de service vehicules)
       KEYCLOAK_REALM: sgfv
       KEYCLOAK_RESOURCE: sgfv-backend
       OTEL_EXPORTER_OTLP_ENDPOINT: http://otel-collector:4317
       OTEL_SERVICE_NAME: service-conducteurs
     depends_on:
       postgres-conducteurs:
-<<<<<<< HEAD
-        condition: service_healthy
-      kafka:
-        condition: service_healthy
-      keycloak:
-        condition: service_healthy
-=======
         condition: service_started
       kafka:
         condition: service_started
       keycloak:
         condition: service_started
->>>>>>> bc6798a (modification de service vehicules)
     networks:
       - fleet-network
 
@@ -459,31 +398,19 @@ services:
       SPRING_DATASOURCE_USERNAME: sgfv
       SPRING_DATASOURCE_PASSWORD: sgfv_secret
       SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:29092
-<<<<<<< HEAD
-      KEYCLOAK_AUTH_SERVER_URL: http://keycloak:8080
-=======
       # On force Keycloak 8180
       SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI: http://keycloak:8180/realms/sgfv/protocol/openid-connect/certs
->>>>>>> bc6798a (modification de service vehicules)
       KEYCLOAK_REALM: sgfv
       KEYCLOAK_RESOURCE: sgfv-backend
       OTEL_EXPORTER_OTLP_ENDPOINT: http://otel-collector:4317
       OTEL_SERVICE_NAME: service-maintenance
     depends_on:
       postgres-maintenance:
-<<<<<<< HEAD
-        condition: service_healthy
-      kafka:
-        condition: service_healthy
-      keycloak:
-        condition: service_healthy
-=======
         condition: service_started
       kafka:
         condition: service_started
       keycloak:
         condition: service_started
->>>>>>> bc6798a (modification de service vehicules)
     networks:
       - fleet-network
 
@@ -507,19 +434,11 @@ services:
       OTEL_SERVICE_NAME: service-localisation
     depends_on:
       postgres-localisation:
-<<<<<<< HEAD
-        condition: service_healthy
-      kafka:
-        condition: service_healthy
-      keycloak:
-        condition: service_healthy
-=======
         condition: service_started
       kafka:
         condition: service_started
       keycloak:
         condition: service_started
->>>>>>> bc6798a (modification de service vehicules)
     networks:
       - fleet-network
 
@@ -541,19 +460,11 @@ services:
       OTEL_SERVICE_NAME: service-alertes
     depends_on:
       postgres-alertes:
-<<<<<<< HEAD
-        condition: service_healthy
-      kafka:
-        condition: service_healthy
-      keycloak:
-        condition: service_healthy
-=======
         condition: service_started
       kafka:
         condition: service_started
       keycloak:
         condition: service_started
->>>>>>> bc6798a (modification de service vehicules)
     networks:
       - fleet-network
 

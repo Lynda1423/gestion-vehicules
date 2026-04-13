@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "/api/v1/conducteurs", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -22,7 +23,11 @@ public class ConducteurController {
     }
 
     @GetMapping("/{id}")
+<<<<<<< HEAD
     public ConducteurDto getById(@PathVariable Long id) {
+=======
+    public ConducteurDto getById(@PathVariable UUID id) {
+>>>>>>> lynda
         return conducteurService.getConducteurById(id);
     }
 

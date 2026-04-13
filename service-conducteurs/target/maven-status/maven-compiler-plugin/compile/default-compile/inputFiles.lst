@@ -1,0 +1,17 @@
+C:\Users\hp\Desktop\gestion_vehicules\gestion_vehicules\service-conducteurs\src\main\java\fr\sgfv\conducteurs\ConducteursApplication.java
+C:\Users\hp\Desktop\gestion_vehicules\gestion_vehicules\service-conducteurs\src\main\java\fr\sgfv\conducteurs\entity\Disponibilite.java
+C:\Users\hp\Desktop\gestion_vehicules\gestion_vehicules\service-conducteurs\src\main\java\fr\sgfv\conducteurs\entity\Assignation.java
+C:\Users\hp\Desktop\gestion_vehicules\gestion_vehicules\service-conducteurs\src\main\java\fr\sgfv\conducteurs\entity\Conducteur.java
+C:\Users\hp\Desktop\gestion_vehicules\gestion_vehicules\service-conducteurs\src\main\java\fr\sgfv\conducteurs\entity\ConducteurStatut.java
+C:\Users\hp\Desktop\gestion_vehicules\gestion_vehicules\service-conducteurs\src\main\java\fr\sgfv\conducteurs\controller\ConducteurController.java
+C:\Users\hp\Desktop\gestion_vehicules\gestion_vehicules\service-conducteurs\src\main\java\fr\sgfv\conducteurs\repository\ConducteurRepository.java
+C:\Users\hp\Desktop\gestion_vehicules\gestion_vehicules\service-conducteurs\src\main\java\fr\sgfv\conducteurs\controller\AssignationController.java
+C:\Users\hp\Desktop\gestion_vehicules\gestion_vehicules\service-conducteurs\src\main\java\fr\sgfv\conducteurs\dto\AssignationRequestDto.java
+C:\Users\hp\Desktop\gestion_vehicules\gestion_vehicules\service-conducteurs\src\main\java\fr\sgfv\conducteurs\dto\AssignationResponseDto.java
+C:\Users\hp\Desktop\gestion_vehicules\gestion_vehicules\service-conducteurs\src\main\java\fr\sgfv\conducteurs\SecurityConfig.java
+C:\Users\hp\Desktop\gestion_vehicules\gestion_vehicules\service-conducteurs\src\main\java\fr\sgfv\conducteurs\dto\ConducteurDto.java
+C:\Users\hp\Desktop\gestion_vehicules\gestion_vehicules\service-conducteurs\src\main\java\fr\sgfv\conducteurs\service\AssignationService.java
+C:\Users\hp\Desktop\gestion_vehicules\gestion_vehicules\service-conducteurs\src\main\java\fr\sgfv\conducteurs\service\ConducteurService.java
+C:\Users\hp\Desktop\gestion_vehicules\gestion_vehicules\service-conducteurs\src\main\java\fr\sgfv\conducteurs\kafka\ConducteurKafkaProducer.java
+C:\Users\hp\Desktop\gestion_vehicules\gestion_vehicules\service-conducteurs\src\main\java\fr\sgfv\conducteurs\dto\ConducteurEvent.java
+C:\Users\hp\Desktop\gestion_vehicules\gestion_vehicules\service-conducteurs\src\main\java\fr\sgfv\conducteurs\repository\AssignationRepository.java

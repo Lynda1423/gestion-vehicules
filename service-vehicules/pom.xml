@@ -124,8 +124,6 @@
     <artifactId>mockito-junit-jupiter</artifactId>
     <scope>test</scope>
 </dependency>
-<<<<<<< HEAD
-=======
     <dependency>
         <groupId>net.logstash.logback</groupId>
         <artifactId>logstash-logback-encoder</artifactId>
@@ -137,7 +135,6 @@
         <artifactId>h2</artifactId>
         <scope>test</scope>
     </dependency>
->>>>>>> bc6798a (modification de service vehicules)
   </dependencies>
 
   <build>
@@ -154,8 +151,6 @@
           </excludes>
         </configuration>
       </plugin>
-<<<<<<< HEAD
-=======
       <!-- JaCoCo for Code Coverage -->
       <plugin>
         <groupId>org.jacoco</groupId>
@@ -183,7 +178,6 @@
           </execution>
         </executions>
       </plugin>
->>>>>>> bc6798a (modification de service vehicules)
     </plugins>
   </build>
 

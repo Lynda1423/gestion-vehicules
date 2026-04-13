@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @Table(name = "assignations")
@@ -17,15 +18,24 @@ import java.time.LocalDateTime;
 public class Assignation {
 
     @Id
+<<<<<<< HEAD
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+=======
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+>>>>>>> lynda
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "conducteur_id", nullable = false)
     private Conducteur conducteur;
 
     @Column(name = "vehicule_id", nullable = false)
+<<<<<<< HEAD
     private Long vehiculeId;
+=======
+    private UUID vehiculeId;
+>>>>>>> lynda
 
     @Column(name = "date_debut", nullable = false)
     private LocalDateTime dateDebut;
