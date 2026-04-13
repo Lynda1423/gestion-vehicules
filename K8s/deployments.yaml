@@ -94,11 +94,7 @@ spec:
       containers:
         - name: service-conducteurs
           image: gestion_vehicules-service-conducteurs:latest
-<<<<<<< HEAD
-          imagePullPolicy: Never
-=======
           imagePullPolicy: IfNotPresent
->>>>>>> lynda
           ports:
             - containerPort: 8082
           envFrom:
@@ -126,15 +122,9 @@ spec:
             httpGet:
               path: /actuator/health
               port: 8082
-<<<<<<< HEAD
-            initialDelaySeconds: 30
-            periodSeconds: 10
-            failureThreshold: 200
-=======
             initialDelaySeconds: 60
             periodSeconds: 10
             failureThreshold: 30
->>>>>>> lynda
           livenessProbe:
             httpGet:
               path: /actuator/health
@@ -202,15 +192,9 @@ spec:
             httpGet:
               path: /actuator/health
               port: 8083
-<<<<<<< HEAD
-            initialDelaySeconds: 30
-            periodSeconds: 10
-            failureThreshold: 200
-=======
             initialDelaySeconds: 60
             periodSeconds: 10
             failureThreshold: 30
->>>>>>> lynda
           livenessProbe:
             httpGet:
               path: /actuator/health
