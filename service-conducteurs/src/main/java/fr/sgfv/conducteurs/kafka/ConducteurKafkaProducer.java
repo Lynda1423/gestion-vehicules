@@ -23,7 +23,7 @@ public class ConducteurKafkaProducer {
     @Value("${kafka.topics.conducteur-created}")
     private String rubriqueCreated;
 
-    public void publishConducteurAssigned(Long conducteurId, Long vehiculeId) {
+    public void publishConducteurAssigned(UUID conducteurId, UUID vehiculeId) {
         ConducteurEvent event = ConducteurEvent.builder()
                 .eventId(UUID.randomUUID().toString())
                 .eventType("CONDUCTEUR_ASSIGNED")
@@ -37,7 +37,7 @@ public class ConducteurKafkaProducer {
         log.info("Message d'assignation envoyé pour véhicule {} et conducteur {}", vehiculeId, conducteurId);
     }
     
-    public void publishConducteurCreated(Long conducteurId) {
+    public void publishConducteurCreated(UUID conducteurId) {
         ConducteurEvent event = ConducteurEvent.builder()
                 .eventId(UUID.randomUUID().toString())
                 .eventType("CONDUCTEUR_CREATED")

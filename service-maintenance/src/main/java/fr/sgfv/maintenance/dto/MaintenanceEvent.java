@@ -1,5 +1,6 @@
-package fr.sgfv.conducteurs.dto;
+package fr.sgfv.maintenance.dto;
 
+import fr.sgfv.maintenance.entity.MaintenanceStatut;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,10 +13,11 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ConducteurEvent {
+public class MaintenanceEvent {
     private String eventId;
-    private String eventType; // EX: CONDUCTEUR_CREATED, CONDUCTEUR_ASSIGNED
-    private UUID conducteurId;
+    private String eventType;
+    private UUID maintenanceId;
     private UUID vehiculeId;
+    private MaintenanceStatut statut;
     private LocalDateTime timestamp;
 }
