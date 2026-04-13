@@ -23,11 +23,7 @@ public class ConducteurKafkaProducer {
     @Value("${kafka.topics.conducteur-created}")
     private String rubriqueCreated;
 
-<<<<<<< HEAD
-    public void publishConducteurAssigned(Long conducteurId, Long vehiculeId) {
-=======
     public void publishConducteurAssigned(UUID conducteurId, UUID vehiculeId) {
->>>>>>> lynda
         ConducteurEvent event = ConducteurEvent.builder()
                 .eventId(UUID.randomUUID().toString())
                 .eventType("CONDUCTEUR_ASSIGNED")

@@ -8,25 +8,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-<<<<<<< HEAD
-=======
 import java.util.UUID;
->>>>>>> lynda
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class ConducteurDto {
-<<<<<<< HEAD
-    private Long id;
-    private String nom;
-    private String prenom;
-    private String numeroPermis;
-    private String typePermis;
-    private LocalDate dateExpirationPermis;
-    private ConducteurStatut statut;
-=======
     private UUID id;
     private String keycloakId;
     private String nom;
@@ -38,5 +26,4 @@ public class ConducteurDto {
     private UUID vehiculeAssigneId;
     private ConducteurStatut statutCompte;
     private Disponibilite disponibilite;
->>>>>>> lynda
 }

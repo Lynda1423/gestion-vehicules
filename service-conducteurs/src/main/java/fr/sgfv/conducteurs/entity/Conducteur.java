@@ -21,16 +21,11 @@ import java.util.UUID;
 public class Conducteur {
 
     @Id
-<<<<<<< HEAD
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-=======
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column(name = "keycloak_id", nullable = false, length = 36, unique = true)
     private String keycloakId;
->>>>>>> lynda
 
     @Column(nullable = false, length = 100)
     private String nom;
@@ -38,21 +33,6 @@ public class Conducteur {
     @Column(nullable = false, length = 100)
     private String prenom;
 
-<<<<<<< HEAD
-    @Column(name = "numero_permis", nullable = false, unique = true, length = 50)
-    private String numeroPermis;
-
-    @Column(name = "type_permis", nullable = false, length = 20)
-    private String typePermis;
-
-    @Column(name = "date_expiration_permis", nullable = false)
-    private LocalDate dateExpirationPermis;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 50)
-    @Builder.Default
-    private ConducteurStatut statut = ConducteurStatut.ACTIF;
-=======
     @Column(nullable = false, length = 100, unique = true)
     private String email;
 
@@ -85,5 +65,4 @@ public class Conducteur {
     @UpdateTimestamp
     @Column(name = "date_modification")
     private LocalDateTime dateModification;
->>>>>>> lynda
 }

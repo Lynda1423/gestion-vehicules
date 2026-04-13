@@ -18,24 +18,15 @@ import java.util.UUID;
 public class Assignation {
 
     @Id
-<<<<<<< HEAD
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-=======
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
->>>>>>> lynda
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "conducteur_id", nullable = false)
     private Conducteur conducteur;
 
     @Column(name = "vehicule_id", nullable = false)
-<<<<<<< HEAD
-    private Long vehiculeId;
-=======
     private UUID vehiculeId;
->>>>>>> lynda
 
     @Column(name = "date_debut", nullable = false)
     private LocalDateTime dateDebut;

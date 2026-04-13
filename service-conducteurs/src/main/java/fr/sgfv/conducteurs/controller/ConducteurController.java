@@ -23,11 +23,7 @@ public class ConducteurController {
     }
 
     @GetMapping("/{id}")
-<<<<<<< HEAD
-    public ConducteurDto getById(@PathVariable Long id) {
-=======
     public ConducteurDto getById(@PathVariable UUID id) {
->>>>>>> lynda
         return conducteurService.getConducteurById(id);
     }
 
